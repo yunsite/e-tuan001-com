@@ -1,0 +1,46 @@
+
+<table cellpadding=3 cellspacing=3 width="550" >
+    <tr>
+    	<td class="tRight" width="80" ><b>项目名称：</b></td>
+    	<td class="tLeft" >{$team.title}</td>
+    </tr>
+    <tr>
+    	<td class="tRight" width="80" ><b>项目状态：</b></td>
+    	<td class="tLeft" ><span style="color:#F00;font-weight:bold;">{$team|state_explain}</span>
+    	<if condition = "($team['close_time']) and ($team['now_number'] egt $team['min_number']) and ($team['delivery'] eq 'express')">
+    	   &nbsp;&nbsp;<span style="color:#F8C;font-weight:bold;">
+    	   <if condition = "$team['teamcoupon']">&lt;{$INI['system']['couponname']}未发完&gt;
+    	   
+    	   <else />&lt;{$INI['system']['couponname']}已发放&gt;
+    	   </if></span>
+        </if>
+    	</td>
+    </tr>
+    <tr>
+    	<td class="tRight" width="80" ><b>项目时间：</b></td>
+    	<td class="tLeft" >开始：{$team.begin_time|toDate='Y-m-d'}&nbsp;&nbsp;&nbsp;&nbsp;截至：{$team.end_time|toDate='Y-m-d'}</td>
+    </tr>
+    <tr>
+    	<td class="tRight" width="80" ><b>项目定价：</b></td>
+    	<td class="tLeft" >市场价格：{$team.market_price|moneyit}元&nbsp;&nbsp;&nbsp;&nbsp;团购价格：{$team.team_price|moneyit}元</td>
+    </tr>
+    <tr>
+    	<td class="tRight" width="80" ><b>项目类别：</b></td>
+    	<td class="tLeft" >{$team.group_id|get_group_name}</td>
+    </tr>
+    <tr>
+    	<td colspan="2" ><b><hr></b></td>
+    </tr>
+    <tr>
+    	<td class="tRight" width="80" ><b>成交情况：</b></td>
+    	<td class="tLeft" ><b>{$team['now_number']}</b>&nbsp;，实际共&nbsp;<b>{$paycount}</b>&nbsp;人购买了&nbsp;<b>{$buycount}</b>&nbsp;份</td>
+    </tr>
+    <tr>
+    	<td class="tRight" width="80" ><b>支付统计：</b></td>
+    	<td class="tLeft" >在线支付：<b>{$onlinepay}</b>&nbsp;元&nbsp;&nbsp;&nbsp;&nbsp;余额支付：<b>{$creditpay}</b>&nbsp;元</td>
+    </tr>
+    <tr>
+    	<td class="tRight" width="80" ><b>项目收支：</b></td>
+    	<td class="tLeft" >支付总额：<b>{$onlinepay|totle_money=$creditpay}</b>&nbsp;元&nbsp;&nbsp;&nbsp;&nbsp;代金券抵用：<b>{$cardpay}</b>&nbsp;元</td>
+    </tr>
+</table>
