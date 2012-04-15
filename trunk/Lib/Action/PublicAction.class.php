@@ -155,6 +155,7 @@ class PublicAction extends Action {
             $_SESSION['loginUserName']		=	$authInfo['nickname'];
             $_SESSION['lastLoginTime']		=	$authInfo['last_login_time'];
 			$_SESSION['login_count']	=	$authInfo['login_count'];
+            $_SESSION['city_ids']	=	$authInfo['city_ids'];
             if($authInfo['account']=='admin') {
             	$_SESSION['administrator']		=	true;
             }

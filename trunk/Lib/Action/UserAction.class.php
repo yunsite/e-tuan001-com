@@ -28,6 +28,11 @@ class UserAction extends CommonAction {
 		if(!$User->create()) {
 			$this->error($User->getError());
 		}else{
+		    if(!isset($_POST['city_ids'])) {
+				$User->city_ids = serialize(array());
+			} else {
+				$User->city_ids = serialize($_POST['city_ids']);
+			}
 			// 写入帐号数据
 			if($result	 =	 $User->add()) {
 				$this->addRole($result);

@@ -1,0 +1,92 @@
+<include file="Public:head" />
+<div id="main" class="main" >
+<div class="content">
+<div class="title">添加数据 [ <a href="__URL__">返回列表</a> ]</div>
+<div id="result" class="result none"></div>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Js/editor/kindeditor.js"></script>
+<script type="text/javascript">
+    KE.show({
+        id : 'content_location' //TEXTAREA输入框的ID
+   });
+</script>
+<form method='post' id="form1" name="form1" action="__URL__/insert"  enctype="multipart/form-data">
+<table cellpadding=3 cellspacing=3 >
+<tr>
+	<td class="tLeft" style="padding-left:50px" colspan="2"><h1>1.登陆信息</h1></td>
+</tr>
+<tr>
+	<td class="tRight" width="100">用户名：</td>
+	<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="username"></td>
+</tr>
+<tr>
+	<td class="tRight" width="100">登陆密码：</td>
+	<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="password"></td>
+</tr>
+<tr>
+	<td class="tLeft" style="padding-left:50px" colspan="2"><h1>2.标注信息</h1></td>
+</tr>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAGwmL8Q0h6IOxkbcsnpdvqRS7DR0I4CZm2LKyBH_0e0XWEeea9RRxPPJJ9zwiU9l2d0yEX0cdk-dlxw" type="text/javascript"></script>
+<script type="text/javascript">
+setgooglemappoint = function(latlng) {
+    jQuery('#inputlonglat').val(latlng.y+','+latlng.x);
+};
+setgooglemapclick = function(overlay, latlng) {
+    jQuery('#inputlonglat').val(latlng.y+','+latlng.x);
+};
+
+</script>
+<script language="javascript">
+function setgooglemap(ll){
+    Boxy.DEFAULTS.title = "选取地图坐标";
+    Boxy.DEFAULTS.modal = true;
+    //Boxy.load(URL+"/showgooglemap/ll/"+ll);
+    Boxy.load("/index.php?m=Partner&a=setgooglemap&ll="+ll);
+}
+</script>
+<tr>
+	<td class="tRight" width="100">谷歌map：</td>
+	<td class="tLeft" ><input type="text" class="huge bLeftRequire" value="{$partner['longlat']}" name="longlat" id="inputlonglat" onclick="setgooglemap('{$partner['longlat']}');"></td>
+</tr>
+<tr>
+	<td class="tLeft" style="padding-left:50px" colspan="2"><h1>3.基本信息</h1></td>
+</tr>
+<tr>
+	<td class="tRight" width="100">商户名称：</td>
+	<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="title"></td>
+</tr>
+<tr>
+	<td class="tRight" width="100">网站地址：</td>
+	<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="homepage"></td>
+</tr>
+<tr>
+	<td class="tRight" width="100">联系人：</td>
+	<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="contact"></td>
+</tr>
+<tr>
+	<td class="tRight" width="100">联系电话：</td>
+	<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="phone"></td>
+</tr>
+<tr>
+	<td class="tRight" width="100">商户地址：</td>
+	<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="address"></td>
+</tr>
+<tr>
+	<td class="tRight" width="100">手机号码：</td>
+	<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="mobile"></td>
+</tr>
+<tr>
+	<td class="tRight" width="100">位置信息：</td>
+	<td class="tLeft" ><textarea id="content_location" name="location" style="width:700px;height:300px;"></textarea></td>
+</tr>
+
+<tr>
+	<td></td>
+	<td class="center"><div style="width:85%;margin:5px">
+    <input type="hidden" name="think_user_id" value="<?php echo $_SESSION[C('USER_AUTH_KEY')] ?>">
+	<input type="submit" value="保 存"  class="button small">&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button small" onclick="resetEditor()" value="重 置" >
+	</div></td>
+</tr>
+</form>
+</table>
+</div>
+</div>

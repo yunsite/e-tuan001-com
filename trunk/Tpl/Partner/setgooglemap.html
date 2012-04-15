@@ -1,0 +1,27 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:620px;">
+	<div id="map_canvas" style="width:620px; height:420px"></div> 
+</div>
+
+
+<script language="javascirpt">
+function GShowMap() {
+	if (GBrowserIsCompatible()) { 
+		var map = new GMap2(document.getElementById("map_canvas")); 
+		var latlng = new GLatLng({$longi}, {$lati});
+		map.setCenter(latlng, 12); 
+		map.addControl(new GLargeMapControl());
+		map.enableGoogleBar();
+		map.enableScrollWheelZoom();
+		var point = new GMarker(latlng,{draggable:true});
+		map.addOverlay(point);
+	    GEvent.addListener(point, "dragend", function() {
+			latlng = point.getLatLng();
+			map.panTo(latlng);
+		});
+		GEvent.addListener(point, "dragend", setgooglemappoint);
+		GEvent.addListener(map, "click", setgooglemapclick);
+	} 
+}
+
+setTimeout(GShowMap,100);
+</script>
