@@ -5,7 +5,7 @@
 <script language="JavaScript">
 <!--
 function checkName(){
-	ThinkAjax.send('__URL__/checkAccount/','ajax=1&account='+$F('account'));
+    ThinkAjax.send('__URL__/checkAccount/','ajax=1&account='+$F('account'));
 }
 //-->
 </script>
@@ -22,8 +22,21 @@ function checkName(){
 	<td class="tLeft" ><input type="text" class="medium bLeft" name="password" value=""></td>
 </tr>
 <tr>
-	<td class="tRight" >昵称：</td>
+	<td class="tRight" >名称：</td>
 	<td class="tLeft" ><input type="text" class="medium bLeft" name="nickname" value=""></td>
+</tr>
+<tr>
+	<td class="tRight" >城市：</td>
+	<td class="tLeft" >
+	
+	   <?php
+	   $model = new Model();
+	   $cites = $model->query("select * from category where zone='city' and display='Y' order by sort_order DESC");
+	   foreach ($cites AS $city){
+	       echo "<input type=\"checkbox\" name=\"city_ids[]\" value=\"$city[id]\" id=\"$city[ename]\"><label for=\"$city[ename]\">$city[name]</label>&nbsp;&nbsp;";
+	   }
+	   ?>
+	</td>
 </tr>
 
 <tr>
